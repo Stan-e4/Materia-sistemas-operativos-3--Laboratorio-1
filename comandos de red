@@ -1,0 +1,53 @@
+Practica 2:  Configuracion de parametros de red 
+
+Verificar interfaces de red: ip a
+
+CONFIGURAR RED CON DHCP
+Forma 1: Usando dhclient
+sudo dhclient enp0s3
+sudo dhclient -r enp0s3
+sudo dhclient enp0s3
+Estatica
+sudo ip addr add 192.168.1.50/24 dev enp0s3
+sudo ip route add default via 192.168.1.1
+
+Forma 2 Netplan
+sudo nano /etc/netplan/01-network-manager-all.yaml
+Dinamica:
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    enp0s3:
+      dhcp4: true
+
+Estatica:
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    enp0s3:
+      dhcp4: no
+      addresses:
+        - 192.168.100.50/24
+      gateway4: 192.168.100.1
+      nameservers:
+        addresses:
+          - 8.8.8.8
+          - 8.8.4.4
+control o enter y control x
+sudo netplan apply 
+
+Forma con nmcli: 
+nmcli con show
+Dinamica: 
+nmcli con show
+sudo nmcli con mod "Conexión cableada 1" ipv4.method auto
+sudo nmcli con up "Conexión cableada 1"
+
+Estatica:
+sudo nmcli con mod "Conexión cableada 1" ipv4.method manual
+sudo nmcli con mod "Conexión cableada 1" ipv4.addresses 192.168.100.50/24
+sudo nmcli con mod "Conexión cableada 1" ipv4.gateway 192.168.100.1
+sudo nmcli con mod "Conexión cableada 1" ipv4.dns "8.8.8.8 8.8.4.4"
+sudo nmcli con up "Conexión cableada 1"
