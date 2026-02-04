@@ -1,0 +1,13 @@
+Comandos para modulo 3:
+
+sudo adduser Stanley
+sudo usermod -aG sudo Stanley
+groups Stanley
+
+sudo groupadd guest
+sudo adduser invitado
+sudo usermod -aG guest invitado
+groups invitado
+
+sudo deluser invitado
+sudo groupdel guest
