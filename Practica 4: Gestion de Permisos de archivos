@@ -1,0 +1,21 @@
+Comandos modulo 1 lab 4:
+Gestion de Permisos de archivos
+mkdir materia
+cd materia
+touch estudiante.txt
+vi estudiante.txt
+(i
+Nombre: TU NOMBRE
+Matrícula: TU MATRÍCULA
+ESC
+:wq
+)
+
+chmod 700 estudiante.txt
+chmod 070 estudiante.txt
+
+mkdir ../materia2
+cp estudiante.txt ../materia2/
+
+cd ..
+rm -r materia
